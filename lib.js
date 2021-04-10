@@ -2,52 +2,99 @@ document.onkeydown = checkButton;
 
 function checkButton(event) {
 
+    let cubeRight = cube.x + cube.width;
+    let cubeBottom = cube.y + cube.height;
+
+    let mapRight = map.x + map.width;
+    let mapBottom = map.y + map.height;
+
     if (event.keyCode === 37) {
         console.log("ArrowLeft");
-        if (cube.y > 0) {
-            cube.y -= cube.step;
+        if (map.x < cube.x) {
+            if ((map.x < cube.x) < cube.step) {
+                cube.x -= cube.x - map.x;
+            }
+
+            else {
+                cube.x -= cube.step;
+            }
+        }
+    }
+
+    if (event.keyCode === 38) {
+        console.log("ArrowUp");
+        if (map.y < cube.y) {
+            if ((cube.y - map.y) < cube.step) {
+                cube.y -= cube.y - map.y;
+            }
+
+            else {
+                cube.y -= cube.step;
+            }            
         }
     }
 
     if (event.keyCode === 39) {
         console.log("ArrowRight");
-        if ((cube.y + cube.width) < map.width) {
-            cube.y += cube.step;
-        }
-        
-    }
+        if (cubeRight < mapRight) {
+            if ((mapRight - cubeRight) < cube.step) {
+                cube.x += mapRight - cubeRight;
+            }
 
-    if (event.keyCode === 38) {
-        console.log("ArrowUp");
-        if (cube.x > 0) {
-            cube.x -= cube.step;
-        } 
+            else {
+                cube.x += cube.step;
+            }
+        }
     }
 
     if (event.keyCode === 40) {
         console.log("ArrowDown");
-        if ((cube.x + cube.height) < map.height) {
-            cube.x += cube.step;
-        }   
+        if (cubeBottom < mapBottom) {
+            if ((mapBottom - cubeBottom) < cube.step) {
+                cube.y += mapBottom - cubeBottom;
+            }
+
+            else {
+                cube.y += cube.step;
+            }
+        }
     }
 
     renderCube(cube);
 }
 
-function renderCube (cube) {
-    document.getElementById(cube.id).style.top = cube.x + 'px';
-    document.getElementById(cube.id).style.left = cube.y + 'px';
+function renderCube(cube) {
+    document.getElementById(cube.id).style.top = cube.y + 'px';
+    document.getElementById(cube.id).style.left = cube.x + 'px';
     document.getElementById(cube.id).style.width = cube.width + 'px';
     document.getElementById(cube.id).style.height = cube.height + 'px';
-    document.getElementById(cube.id).style.transition = 'ease' + cube.trnstn + 's';
+    document.getElementById(cube.id).style.transition = 'ease ' + cube.trnstn + 's';
     document.getElementById(cube.id).style.backgroundColor = cube.color;
 }
 
 function renderMap(map) {
     document.getElementById('map').style.top = map.y + 'px';
-    document.getElementById('map').style.left = map.y + 'px';
+    document.getElementById('map').style.left = map.x + 'px';
     document.getElementById('map').style.width = map.width + 'px';
     document.getElementById('map').style.height = map.height + 'px';
     document.getElementById('map').style.backgroundColor = map.color;
-    document.getElementById('map').style.border = '4px solid' + map.border;
+    document.getElementById('map').style.border = '2px solid ' + map.border;
+}
+
+function spawnCube(map, cube) {
+    
+    let mapMinX = map.x;
+    let mapMaxX = map.x + map.width - cube.width;
+    let mapMinY = map.y;
+    let mapMaxY = map.y + map.height - cube.height;
+
+    
+    
+    
+    cube.x = mapMinX + Math.random() * (mapMinX - mapMinX);
+    cube.y = mapMinY + Math.random() * (mapMinY - mapMinY);
+
+    
+    return cube;
+
 }
