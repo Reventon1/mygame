@@ -75,54 +75,20 @@ let cubeJadernijaBomba = {
     color: 'red'
 }
 
-let map = {
-    x: 0,
-    y: 0,
-    width: window.innerWidth,
-    height: window.innerHeight,
-    color: '#287233',
-    border: '#000000'
-}
+let game = new Game();
 
-let bots = [];
+game.initMap();
 
-let bot = {
-    id: 1,
-    x: 0,
-    y: 0,
-    width: 56,
-    height: 56,
-    trnstn: .25,
-    step: 56,
-    color: 'orange'
-}
 
-bots.push(bot);
+renderMap(game.getMap());
+renderCube(spawnCube(game.getMap(), cube));
+renderBots(game.getBots());
+renderBuffs(game.getBuffs());
 
-let buffs = [];
-
-let buff = {
-    id: 1,
-    x: 220,
-    y: 220,
-    width: 56,
-    height: 56,
-    trnstn: .25,
-    step: 56,
-    color: 'purple'
-}
-
-buffs.push(buff);
+game.pushBot();
+game.pushBuff();
 
 mapSize(map);
-
-renderMap(map);
-
-renderCube(spawnCube(map, cube));
-
-renderBots(bots);
-
-renderBuffs(buffs);
 
 renderAmogus(spawnAmogus(map, cubeAmogus));
 
