@@ -1,107 +1,54 @@
+let map = {
+    x: 0,
+    y: 0,
+    // width: window.innerWidth,
+    // height: window.innerHeight,
+    width: 720,
+    height: 560,
+    color: '#f5f5f5'
+}
+
 let cube = {
+    x: 0,
+    y: 0,
     id: 'cube',
-    x: 0,
-    y: 0,
     width: 56,
     height: 56,
-    trnstn: .25,
+    trn: .25,
     step: 56,
-    color: 'black'
+    color: 'black',
+    oldX: 0,
+    oldY: 0 
 }
 
-let cubeAmogus = {
-    id: 'cubeAmogus',
+let buffs = [];
+
+let buff = {
     x: 0,
     y: 0,
+    id: 1,
     width: 56,
     height: 56,
-    trnstn: .25,
+    trn: .25,
     step: 56,
-    color: 'yellow'
+    color: 'green'
 }
 
-let cubeSUS = {
-    id: 'cubeSUS',
-    x: 0,
-    y: 0,
-    width: 56,
-    height: 56,
-    trnstn: .25,
-    step: 56,
-    color: 'white'
+let scet = {
+    x: 670,
+    y: 510,
+    width: 50,
+    height: 50,
+    id: 'scet',
+    backgroundcolor: 'black'
+    
 }
 
-let cubeKazahi = {
-    id: 'cubeKazahi',
-    x: 0,
-    y: 0,
-    width: 56,
-    height: 56,
-    trnstn: .25,
-    step: 56,
-    color: 'brown'
-}
+// bots.push(bot);
+renderMap(map);
+renderCube(spawnCube(map, cube));
 
-let cubeAzerbaidjan = {
-    id: 'cubeAzerbaidjan',
-    x: 0,
-    y: 0,
-    width: 56,
-    height: 56,
-    trnstn: .25,
-    step: 56,
-    color: 'blue'
-}
+// renderBots(bots);
 
-let cubeOmerika = {
-    id: 'cubeOmerika',
-    x: 0,
-    y: 0,
-    width: 56,
-    height: 56,
-    trnstn: .25,
-    step: 56,
-    color: '#3a75c4'
-}
-
-let cubeJadernijaBomba = {
-    id: 'cubeJadernijaBomba',
-    x: 0,
-    y: 0,
-    width: 56,
-    height: 56,
-    trnstn: .25,
-    step: 56,
-    color: 'red'
-}
-
-let game = new Game();
-
-game.initMap();
-
-
-renderMap(game.getMap());
-renderCube(spawnCube(game.getMap(), cube));
-renderBots(game.getBots());
-renderBuffs(game.getBuffs());
-
-game.pushBot();
-game.pushBuff();
-
-mapSize(map);
-
-renderAmogus(spawnAmogus(map, cubeAmogus));
-
-renderSUS(spawnSUS(map, cubeSUS));
-
-renderKazahi(spawnKazahi(map, cubeKazahi));
-
-renderAzerbaidjan(spawnAzerbaidjan(map, cubeAzerbaidjan));
-
-renderOmerika(spawnOmerika(map, cubeOmerika));
-
-renderJadernijaBomba(spawnJadernijaBomba(map, cubeJadernijaBomba));
-
-let tick = setInterval(timeTick, 1000);
-
-console.log(window);
+let tike = setInterval(timeTike, 3000);
+renderScet(scet);
