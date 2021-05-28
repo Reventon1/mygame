@@ -34,21 +34,26 @@ let buff = {
     color: 'green'
 }
 
-let scet = {
-    x: 670,
-    y: 510,
+// let score = 0;
+
+let tablo = {
+    x: 720,
+    y: 0,
+    id: 'tablo',
     width: 50,
     height: 50,
-    id: 'scet',
-    backgroundcolor: 'black'
-    
+    color: 'grey'
 }
+
+let score = 0;
+    
+
 
 // bots.push(bot);
 renderMap(map);
 renderCube(spawnCube(map, cube));
+renderTablo(tablo);
 
 // renderBots(bots);
 
 let tike = setInterval(timeTike, 3000);
-renderScet(scet);

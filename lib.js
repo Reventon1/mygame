@@ -66,7 +66,6 @@ function checkButton(event) {
     }
 
     renderCube(cube);
-    renderScet(scet);
     initShot();
 }
 
@@ -145,7 +144,6 @@ function buffsLogic() {
 }
 
 function initShot() {
-
     let cubeBottom = cube.y + cube.height;
     let cubeRight = cube.x + cube.width;
 
@@ -158,9 +156,14 @@ function initShot() {
          (buff.y > cube.y && buff.y < cube.oldY)) {
             if ((cube.x < buffRight && cube.x > buff.x) ||
              (cubeRight < buffRight && cubeRight > buff.x)) {
-                 shotBuff(buff);
-                 buffs.splice(index, 1);
-             }
+                shotBuff(buff);
+                buffs.splice(index, 1);
+                score +=1;
+                 
+                 cube.step*score;
+                 console.log(score);
+                
+            }
         }
 
         if ((buff.x > cube.oldX && buff.x < cube.x) ||
@@ -169,6 +172,10 @@ function initShot() {
              (cubeBottom < buffBottom && cubeBottom > buff.y)) {
                 shotBuff(buff);
                 buffs.splice(index, 1);
+                score +=1;
+            
+                cube.step+=10;
+                 console.log(score);
             }
        }
     });
@@ -179,11 +186,11 @@ function shotBuff(buff) {
     document.getElementById('buff_' + buff.id).remove();
 }
 
-function renderScet(scet) {
-    document.getElementById(scet.id).style.top = scet.y + 'px';
-    document.getElementById(scet.id).style.left = scet.x + 'px';
-    document.getElementById(scet.id).style.width = scet.width + 'px';
-    document.getElementById(scet.id).style.height = scet.height + 'px';
-    document.getElementById(scet.id).style.backgroundColor = scet.color;
-    document.getElementById(scet.id).innerText =
+function renderTablo(tablo) {
+    document.getElementById(tablo.id).style.top = tablo.y + 'px';
+    document.getElementById(tablo.id).style.left = tablo.x + 'px';
+    document.getElementById(tablo.id).style.width = tablo.width + 'px';
+    document.getElementById(tablo.id).style.height = tablo.height + 'px';
+    document.getElementById(tablo.id).style.backgroundColor = tablo.color
 }
+
